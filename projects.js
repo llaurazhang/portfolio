@@ -29,7 +29,7 @@ window.PORTFOLIO = {
       id: 'student-hub',
       title: 'integrated student hub',
       file: 'student-hub.fig',
-      summary: 'one platform for uni life — course planning, enrolment, automatic timetables, campus navigation and study-room booking — shaped by user research, usability testing and accessibility checks.',
+      summary: 'one centralised platform for uni life. course planning, enrolment, automatic timetables, campus navigation and study-room booking — shaped by user research, usability testing and accessibility checks.',
       status: 'completed',
       cover: 'img/projects/student-hub/cover.webp',
       coverPosition: 'top',
@@ -47,12 +47,12 @@ window.PORTFOLIO = {
       sections: [
         {
           heading: 'the problem',
-          body: 'students have to piece together one university journey across a handful of disconnected systems — the handbook, enrolment, timetabling, campus maps and room booking. all that switching adds uncertainty, wastes time and makes enrolment or navigation mistakes more likely.<br><br>the main pain points: <b>repeated platform switching</b>, <b>unclear prerequisite and graduation requirements</b>, <b>manual timetable trial and error</b>, <b>difficult campus navigation</b> and <b>hard-to-find study spaces</b>.',
+          body: 'students have to piece together one university journey across a handful of disconnected systems: the handbook, enrolment, timetabling, campus maps and room booking. all that switching adds uncertainty, wastes time and makes enrolment or navigation mistakes more likely.<br><br>the main pain points: <b>repeated platform switching</b>, <b>unclear prerequisite and graduation requirements</b>, <b>manual timetable trial and error</b>, <b>difficult campus navigation</b> and <b>hard-to-find study spaces</b>.',
         },
         {
           heading: 'who we designed for',
-          body: 'we built two personas from the problem space: <b>mary</b>, a final-year cs student who is cross-checking the handbook, the enrolment system and her own spreadsheet because she\'s worried a missing requirement will delay graduation — and <b>hangjun</b>, a postgrad who keeps reshuffling classes to fix clashes and wants a timetable with short gaps and reasonable walking distances.<br><br>their needs became three requirement areas: <b>academic confidence</b>, <b>schedule efficiency</b> and <b>campus support</b>.',
-          images: [{ src: 'img/projects/student-hub/requirements.webp', caption: 'requirement analysis — each user problem mapped to a design response' }],
+          body: 'we built two personas from the problem space: <b>mary</b>, a final-year cs student who is cross-checking the handbook, the enrolment system and her own spreadsheet because she\'s worried a missing requirement will delay graduation and <b>hangjun</b>, a postgrad who keeps reshuffling classes to fix clashes and wants a timetable with short gaps and reasonable walking distances.<br><br>their needs became three requirement areas: <b>academic confidence</b>, <b>schedule efficiency</b> and <b>campus support</b>.',
+          images: [{ src: 'img/projects/student-hub/requirements.webp', caption: 'requirement analysis: each user problem mapped to a design response' }],
         },
         {
           heading: 'research',
@@ -61,8 +61,8 @@ window.PORTFOLIO = {
         },
         {
           heading: 'ai prototype vs our first prototype',
-          body: 'we compared an ai-generated prototype against our own first design. the ai version had a cleaner structure, a persistent sidebar and a clear card layout — but it suggested features that didn\'t exist, gave no feedback after changes, and leaned on so much colour coding that it added cognitive load.<br><br>our manual prototype better matched how existing uni systems work, used step-by-step flows with clear confirmations, and included an interactive map with accessible routes — but it was denser and less polished. the final design combined the ai version\'s clean layout and navigation with our realistic workflows, error prevention and accessibility.',
-          images: [{ src: 'img/projects/student-hub/first-prototype.webp', caption: 'our first prototype — home, class registration, enrolment and campus map' }],
+          body: 'we compared an ai-generated prototype against our own first design. the ai version had a cleaner structure, a persistent sidebar and a clear card layout, but it suggested features that didn\'t exist, gave no feedback after changes, and leaned on so much colour coding that it added cognitive load.<br><br>our manual prototype better matched how existing uni systems work, used step-by-step flows with clear confirmations, and included an interactive map with accessible routes — but it was denser and less polished. the final design combined the ai version\'s clean layout and navigation with our realistic workflows, error prevention and accessibility.',
+          images: [{ src: 'img/projects/student-hub/first-prototype.webp', caption: 'our first prototype: home, class registration, enrolment and campus map' }],
         },
         {
           heading: 'testing & iteration',
@@ -104,9 +104,9 @@ window.PORTFOLIO = {
       emoji: '🧶',
       tags: ['product design', 'web app', 'lo-fi wireframes', 'devsoc'],
       meta: {
-        role: 'designer & developer',
+        role: 'UI/UX designer & developer',
         context: 'devsoc training program',
-        team: 'team za\'atar · 6 people',
+        team: 'unsw devsoc project cycle',
         stack: 'react, typescript, tanstack, rust, postgresql',
       },
       figma: '',
@@ -131,7 +131,7 @@ window.PORTFOLIO = {
         },
         {
           heading: 'two-phase matching',
-          body: '<b>phase 1 — leads.</b> leads preference other leads they\'d like to work with, and tangles\' matching algorithm pairs them up using those preferences and profile questions. once results are released, leads see their co-lead on their team page and a discord channel is created for the team automatically.<br><br><b>phase 2 — trainees.</b> when the directors open the next round, trainees preference lead pairs and other trainees, and the algorithm builds full teams around the existing lead pairs. leads see their trainees first; trainees see their team at a later date.',
+          body: '<b>phase 1 - leads.</b> leads preference other leads they\'d like to work with, and tangles\' matching algorithm pairs them up using those preferences and profile questions. once results are released, leads see their co-lead on their team page and a discord channel is created for the team automatically.<br><br><b>phase 2 — trainees.</b> when the directors open the next round, trainees preference lead pairs and other trainees, and the algorithm builds full teams around the existing lead pairs. leads see their trainees first; trainees see their team at a later date.',
           images: [
             { src: 'img/projects/tangles/phase-1.webp', caption: 'phase 1: leads preferencing' },
             { src: 'img/projects/tangles/phase-2.webp', caption: 'phase 2: trainee preferencing' },
@@ -179,7 +179,7 @@ window.PORTFOLIO = {
       sections: [
         {
           heading: 'the brief',
-          body: 'at the unsw founders × ramsoc × csesoc buildathon 2025, teams had to design an innovative solution aimed at the un\'s <b>sustainable development goals</b> — building a working hardware and code prototype with the components provided.',
+          body: 'at the UNSW Founders × RAMSoc × CSESoc buildathon 2025, teams had to design an innovative solution aimed at the un\'s <b>sustainable development goals</b> building a working hardware and code prototype with the components provided.',
         },
         {
           heading: 'meet glowy ^^',
@@ -188,11 +188,11 @@ window.PORTFOLIO = {
         },
         {
           heading: 'why it matters',
-          body: 'in line with the un sustainable development goals, glowy aims to improve our society\'s <b>health and hygiene</b> and make <b>sanitisation</b> effortless in shared spaces.',
+          body: 'in line with the UN sustainable development goals (SDG), glowy aims to improve our society\'s <b>health and hygiene</b> and make <b>sanitisation</b> effortless in shared spaces.',
         },
         {
           heading: 'outcome',
-          body: 'our team won the <b>design award</b> for the hardware and code prototype 🏆',
+          body: 'our team won the <b>best design award</b> for the hardware and code prototype 🏆',
         },
       ],
       gallery: [],
