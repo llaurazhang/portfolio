@@ -215,11 +215,32 @@ function figmaEmbedUrl(url) {
   return 'https://www.figma.com/embed?embed_host=share&url=' + encodeURIComponent(url);
 }
 
+// "in progress" / "currently building" get a pulsing dot, anything else is "done"
+function statusClass(status) {
+  return /progress|building|wip|ongoing/i.test(status) ? 'wip' : 'done';
+}
+
+// an image (or a list of images) with optional captions; click opens full size
+function figuresHTML(items, fallbackAlt) {
+  const list = (Array.isArray(items) ? items : [items]).filter(Boolean)
+    .map((it) => (typeof it === 'string' ? { src: it } : it));
+  if (!list.length) return '';
+  return `<div class="figures ${list.length > 1 ? 'multi' : ''}">` + list.map((it) => `
+    <figure>
+      <a href="${esc(it.src)}" target="_blank" rel="noopener" aria-label="open image full size">
+        <img src="${esc(it.src)}" alt="${esc(it.alt || it.caption || fallbackAlt || '')}" loading="lazy">
+      </a>
+      ${it.caption ? `<figcaption>${esc(it.caption)}</figcaption>` : ''}
+    </figure>`).join('') + `</div>`;
+}
+
 function thumbHTML(p, folder) {
   const inner = p.cover
-    ? `<img src="${esc(p.cover)}" alt="" loading="lazy">`
+    ? `<img src="${esc(p.cover)}" alt="" loading="lazy" style="object-position:${esc(p.coverPosition || 'center')}">`
     : `<span aria-hidden="true">${esc(p.emoji || '✦')}</span>`;
-  return `<div class="thumb" style="background:${esc(p.color || '#ffeeee')}">${inner}<span class="badge">${FOLDER_TYPE[folder]}</span></div>`;
+  const status = p.status ? `<span class="status ${statusClass(p.status)}">${esc(p.status)}</span>` : '';
+  const award = p.award ? `<span class="award" title="${esc(p.award)}">🏆</span>` : '';
+  return `<div class="thumb" style="background:${esc(p.color || '#ffeeee')}">${inner}<span class="badge">${FOLDER_TYPE[folder]}</span>${status}${award}</div>`;
 }
 
 function renderFolder(win) {
@@ -271,27 +292,28 @@ function renderFolder(win) {
   status.textContent = `${idx + 1} of ${items.length}`;
 
   const meta = project.meta || {};
-  const metaHTML = ['role', 'timeline', 'tools', 'team']
+  const metaHTML = Object.keys(meta)
     .filter((k) => meta[k])
     .map((k) => `<div><dt>${k}</dt><dd>${esc(meta[k])}</dd></div>`).join('');
 
   content.innerHTML = `
     <article class="case">
       <div class="case-hero" style="background:${esc(project.color || '#ffeeee')}">
-        ${project.cover ? `<img src="${esc(project.cover)}" alt="${esc(project.title)} cover">` : `<span aria-hidden="true">${esc(project.emoji || '✦')}</span>`}
+        ${project.cover ? `<img src="${esc(project.cover)}" alt="${esc(project.title)} cover" style="object-position:${esc(project.coverPosition || 'center')}">` : `<span aria-hidden="true">${esc(project.emoji || '✦')}</span>`}
       </div>
       <h2>${esc(project.title)}</h2>
+      ${project.award ? `<p class="award-ribbon">🏆 ${esc(project.award)}</p>` : ''}
       <p class="summary">${esc(project.summary)}</p>
-      <div class="tags">${(project.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+      <div class="tags">${project.status ? `<span class="status-pill ${statusClass(project.status)}">${esc(project.status)}</span>` : ''}${(project.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
       ${metaHTML ? `<dl class="meta">${metaHTML}</dl>` : ''}
       ${project.figma ? `<div class="figma-embed"><iframe src="${esc(figmaEmbedUrl(project.figma))}" allowfullscreen loading="lazy" title="${esc(project.title)} figma prototype"></iframe></div>` : ''}
       ${(project.sections || []).map((s) => `
         <section class="case-section">
           <h3>${esc(s.heading)}</h3>
-          <p>${s.body || ''}</p>
-          ${s.image ? `<img src="${esc(s.image)}" alt="${esc(s.heading)}" loading="lazy">` : ''}
+          <div class="body">${s.body || ''}</div>
+          ${figuresHTML(s.images || (s.image ? [{ src: s.image, caption: s.caption }] : []), s.heading)}
         </section>`).join('')}
-      ${(project.gallery || []).length ? `<div class="gallery">${project.gallery.map((g) => `<img src="${esc(g)}" alt="" loading="lazy">`).join('')}</div>` : ''}
+      ${(project.gallery || []).length ? `<section class="case-section gallery"><h3>gallery</h3>${figuresHTML(project.gallery, project.title)}</section>` : ''}
       ${(project.links || []).length ? `<div class="case-links">${project.links.map((l) => `<a class="pill-link" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join('')}</div>` : ''}
       <nav class="case-nav">
         ${prev ? `<button data-go="${esc(prev.id)}">‹ ${esc(prev.title)}</button>` : '<span></span>'}
