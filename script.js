@@ -304,7 +304,7 @@ function renderFolder(win) {
       <h2>${esc(project.title)}</h2>
       ${project.award ? `<p class="award-ribbon">🏆 ${esc(project.award)}</p>` : ''}
       <p class="summary">${esc(project.summary)}</p>
-      <div class="tags">${project.status ? `<span class="status-pill ${statusClass(project.status)}">${esc(project.status)}</span>` : ''}${(project.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+      ${project.status ? `<div class="tags"><span class="status-pill ${statusClass(project.status)}">${esc(project.status)}</span></div>` : ''}
       ${metaHTML ? `<dl class="meta">${metaHTML}</dl>` : ''}
       ${project.figma ? `<div class="figma-embed"><iframe src="${esc(figmaEmbedUrl(project.figma))}" allowfullscreen loading="lazy" title="${esc(project.title)} figma prototype"></iframe></div>` : ''}
       ${(project.sections || []).map((s) => `
